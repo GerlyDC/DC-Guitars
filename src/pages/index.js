@@ -1,22 +1,103 @@
 import React from "react"
-import { Link } from "gatsby"
+import { Link, useStaticQuery, graphql } from "gatsby"
 
-import Layout from "../components/layout"
-import Image from "../components/image"
-import SEO from "../components/seo"
+import Layout from "../components/Layout"
+import SEO from "../components/Seo"
+import {Wrapper,Image, BottomEdgeDown, Guitar} from './pageStyles/pageStyles'
+import {COLORS} from '../constants'
 
-const IndexPage = () => (
-  <Layout>
+const IndexPage = () => {
+  const {
+    wpcontent: {
+      page: {
+        homeMeta: {
+          homePageDescription,
+          homePageTitle,
+          homePageBannerPicture,
+          homePageFeaturedGuitars,
+        },
+      },
+    },
+  } = useStaticQuery(graphql`
+    query {
+      wpcontent {
+        page(id: "home", idType: URI) {
+          homeMeta {
+            homePageDescription
+            homePageTitle
+            homePageBannerPicture {
+              altText
+              sourceUrl
+              imageFile {
+                childImageSharp {
+                  fluid(quality: 100) {
+                    ...GatsbyImageSharpFluid_withWebp
+                  }
+                }
+              }
+            }
+            homePageFeaturedGuitars {
+              ... on WPGraphql_Guitar {
+                slug
+                guitar {
+                  model
+                  brand
+                  picture {
+                    altText
+                    sourceUrl
+                    imageFile {
+                      childImageSharp {
+                        fluid(quality: 50, grayscale: true) {
+                          ...GatsbyImageSharpFluid_withWebp
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  `)
+
+  return(
+    <Layout>
     <SEO title="Home" />
-    <h1>Hi people</h1>
-    <p>Welcome to your new Gatsby site.</p>
-    <p>Now go build something great.</p>
-    <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
-      <Image />
-    </div>
-    <Link to="/page-2/">Go to page 2</Link> <br />
-    <Link to="/using-typescript/">Go to "Using TypeScript"</Link>
+    <Wrapper>
+      <div className="banner">
+        <Image 
+          fluid={homePageBannerPicture.imageFile.childImageSharp.fluid} 
+          alt={homePageBannerPicture.altText}/>
+          <div className="inner-div">
+            <p className="header-title">{homePageTitle}</p>
+            <p className="heder-description">{homePageDescription}</p>
+          </div>
+          <BottomEdgeDown color={COLORS.BLACK}/>
+      </div>
+       <div className="guitars">
+          <h2>Featured Guitars</h2>
+          <div className="guitar-items">
+            {homePageFeaturedGuitars.map(({guitar, slug}) => (
+              <Guitar key={slug} to={`/${slug}`}>
+                <Image
+                  fluid={guitar.picture.imageFile.childImageSharp.fluid}
+                  alt={guitar.picture.altText}
+                />
+                <div className="guitar-info">
+                  <p>
+                    {guitar.brand}
+                  </p>
+                  <p>{guitar.model}</p>
+                </div>
+              </Guitar>
+            ))}
+          </div>
+      </div>
+    </Wrapper>
   </Layout>
-)
+  )
+}
 
 export default IndexPage
