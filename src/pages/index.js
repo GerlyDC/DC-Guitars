@@ -3,7 +3,7 @@ import { Link, useStaticQuery, graphql } from "gatsby"
 
 import Layout from "../components/Layout"
 import SEO from "../components/Seo"
-import {Wrapper,Image, BottomEdgeDown, Guitar} from './pageStyles/pageStyles'
+import {Wrapper,Image, BottomEdgeDown, Guitar} from '../pageStyles/pageStyles'
 import {COLORS} from '../constants'
 
 const IndexPage = () => {
@@ -42,7 +42,7 @@ const IndexPage = () => {
                 guitar {
                   model
                   brand
-                  picture {
+                  headerpicture {
                     altText
                     sourceUrl
                     imageFile {
@@ -82,8 +82,8 @@ const IndexPage = () => {
             {homePageFeaturedGuitars.map(({guitar, slug}) => (
               <Guitar key={slug} to={`/${slug}`}>
                 <Image
-                  fluid={guitar.picture.imageFile.childImageSharp.fluid}
-                  alt={guitar.picture.altText}
+                  fluid={guitar.headerpicture.imageFile.childImageSharp.fluid}
+                  alt={guitar.headerpicture.altText}
                 />
                 <div className="guitar-info">
                   <p>
