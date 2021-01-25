@@ -23,11 +23,21 @@ module.exports = {
       },
     },
     {
-      resolve: `gatsby-plugin-google-fonts`,
-      options: {
-        fonts: [`Roboto`, `Oswald`],
-        display: "swap",
-      },
+      resolve: `gatsby-plugin-webfonts`,
+  options: {
+    fonts: {
+      google: [
+        {
+          family: "Fugaz One",
+          variants: ["400", "700", "900"],
+        },
+        {
+          family: "Merriweather",
+          variants: ["300", "300i", "400", "700"],
+        },
+      ]
+    }
+  }
     },
     `gatsby-plugin-styled-components`, 
     `gatsby-transformer-sharp`,

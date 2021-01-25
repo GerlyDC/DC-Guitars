@@ -44,7 +44,7 @@ export const MenuList = styled.ul`
     align-items: center;
     a {
       color: ${COLORS.WHITE};
-      font-size: 1.2rem;
+      font-size: 2rem;
       font-family: ${FONT_FAMILIES.BUTTON};
       text-transform: uppercase;
       white-space: nowrap;

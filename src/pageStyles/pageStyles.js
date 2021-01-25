@@ -43,7 +43,7 @@ export const Wrapper = styled.div`
 
       .header-title {
         font-family: ${FONT_FAMILIES.TITLE};
-        font-size: 3rem;
+        font-size: 6rem;
         font-weight: 600;
         color: white;
         text-transform: uppercase;
@@ -56,6 +56,22 @@ export const Wrapper = styled.div`
         }
       }
     }
+  }
+  .companyDescription{
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    width: 100%;
+    padding: 4rem;
+    font-family: ${FONT_FAMILIES.TITLE};
+      font-size: 1.4rem;
+      color: white;
+      text-transform: uppercase;
+      text-align: center;
+      @media (max-width: ${MEDIA_QUERIES.MEDIUM}) {
+        width: 90%;
+        font-size: 1rem;
+      }
   }
 
   .description {
@@ -95,37 +111,6 @@ export const Wrapper = styled.div`
     }
   }
 
-  .contact-info {
-    display: flex;
-    font-size: 1.5rem;
-    font-weight: 600;
-    text-align: center;
-    margin-top: 2rem;
-
-    @media (max-width: ${MEDIA_QUERIES.MEDIUM}) {
-      flex-direction: column;
-    }
-
-    div {
-      width: 33.33%;
-      padding: 1em;
-      color: ${COLORS.TERTIARY};
-
-      @media (max-width: ${MEDIA_QUERIES.MEDIUM}) {
-        width: 100%;
-      }
-
-      p {
-        margin-top: 1rem;
-        color: white;
-
-        a {
-          color: ${COLORS.SECONDARY};
-        }
-      }
-    }
-  }
-
   .guitars {
     display: flex;
     flex-direction: column;
@@ -148,7 +133,6 @@ export const Wrapper = styled.div`
         margin-bottom: 2rem;
       }
     }
-
     .guitar-items {
       display: flex;
       flex-direction: row;
@@ -180,10 +164,10 @@ export const Guitar = styled(Link)`
 
     .guitar-info {
       height: 100%;
-      background-color: ${COLORS.TERTIARY + "c0"};
+      background-color: ${COLORS.BLACK + "c0"};
 
       p {
-        color: ${COLORS.BLACK};
+        color: ${COLORS.TERTIARY};
       }
     }
   }
@@ -217,39 +201,37 @@ export const Guitar = styled(Link)`
   }
 `
 
-export const BottomEdgeDown = styled.div`
+export const BottomEdgeDownLeft = styled.div`
   position: absolute;
   bottom: 0;
   width: 0;
-  border-bottom: 130px solid ${COLORS.TERTIARY};
-  border-right: 100vw solid transparent;
+  border-bottom: ${({ color }) => `100px solid ${color}`};
+  border-right: 50vw solid transparent;
 
-  &:before {
-    content: "";
-    display: block;
-    border-bottom: ${({ color }) => `100px solid ${color}`};
-    border-right: 100vw solid transparent;
-    transform: translateY(130px) scale(1.05);
-  }
 `
-
-export const BottomEdgeUp = styled.div`
+export const BottomEdgeDownRight = styled.div`
   position: absolute;
   bottom: 0;
   width: 0;
-  border-bottom: 140px solid ${COLORS.TERTIARY};
-  border-right: 100vw solid transparent;
-
-  &:after {
-    content: "";
-    display: block;
-    border-bottom: ${({ color }) => `100px solid ${color}`};
-    border-left: 100vw solid transparent;
-
-    transform: translateY(140px) scale(1.05);
-  }
+  right: 0;
+  border-bottom: ${({ color }) => `100px solid ${color}`};
+  border-left: 50vw solid transparent;
 `
-
+export const BottomEdgeUpRight = styled.div`
+  position: absolute;
+  top: 0;
+  width: 0;
+  right: 0;
+  border-top: ${({ color }) => `100px solid ${color}`};
+  border-left: 50vw solid transparent;
+`
+export const BottomEdgeUpLeft = styled.div`
+position: absolute;
+top: 0;
+width: 0;
+border-top: ${({ color }) => `100px solid ${color}`};
+border-right: 50vw solid transparent;
+`
 export const Image = styled(Img)`
   width: 100%;
   height: 100%;

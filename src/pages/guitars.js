@@ -3,7 +3,7 @@ import { useStaticQuery, graphql } from "gatsby"
 
 import Layout from "../components/layout"
 import SEO from "../components/seo"
-import {Wrapper, Image, BottomEdgeDown, BottomEdgeUp, Guitar} from "../pageStyles/pageStyles"
+import {Wrapper, Image, BottomEdgeDownLeft, BottomEdgeDownRight, BottomEdgeUpRight, BottomEdgeUpLeft, Guitar} from "../pageStyles/pageStyles"
 import {COLORS} from "../constants"
 
 const GuitarsPage = () => {
@@ -24,7 +24,7 @@ const GuitarsPage = () => {
               sourceUrl
               imageFile {
                 childImageSharp {
-                  fluid(quality: 100) {
+                  fluid(quality: 75) {
                     ...GatsbyImageSharpFluid_withWebp
                   }
                 }
@@ -44,7 +44,7 @@ const GuitarsPage = () => {
                   sourceUrl
                   imageFile {
                     childImageSharp {
-                      fluid(quality: 50, grayscale: true) {
+                      fluid(quality: 50) {
                         ...GatsbyImageSharpFluid_withWebp
                       }
                     }
@@ -62,20 +62,24 @@ const GuitarsPage = () => {
   return (
     <Layout>
       <SEO title="Guitars" />
-      <Wrapper guitarsColor={COLORS.BLACK} descriptionColor={COLORS.SECONDARY}>
+      <Wrapper guitarsColor={COLORS.BLACK} descriptionColor={COLORS.PRIMARY}>
         <div className="banner">
           <Image
             fluid={guitarsPageBannerPicture.imageFile.childImageSharp.fluid}
             alt={guitarsPageBannerPicture.altText}
           />
-          <BottomEdgeDown color={COLORS.SECONDARY} />
-        </div>
+          <BottomEdgeDownLeft color={COLORS.BLACK}/><BottomEdgeDownRight color={COLORS.BLACK}/>
+          </div>
         <div className="description">
+          <br/>
+          <br/>
           <h2>We are DC Guitars</h2>
           <p>{guitarsPageDescription}</p>
-          <BottomEdgeUp color={COLORS.BLACK} />
+          <BottomEdgeUpLeft color={COLORS.TERTIARY}/><BottomEdgeUpRight color={COLORS.TERTIARY}/>
+          <BottomEdgeDownLeft color={COLORS.TERTIARY}/><BottomEdgeDownRight color={COLORS.TERTIARY}/>
         </div>
         <div className="guitars">
+        
           <h2>Our Guitars</h2>
           <div className="guitar-items">
             {guitars.map(({ node: { guitar, slug } }) => (

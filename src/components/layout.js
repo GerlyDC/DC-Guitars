@@ -44,7 +44,8 @@ const handleOverlayMenu= () => setMenuOpen(!menuOpen)
       >
         <main>{children}</main>
         <footer style={{
-          marginTop: `2rem`
+          marginTop: `2rem`,
+          textAlign:'center'
         }}>
           © DC Guitars
         </footer>

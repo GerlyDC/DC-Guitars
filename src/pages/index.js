@@ -1,9 +1,9 @@
 import React from "react"
-import { Link, useStaticQuery, graphql } from "gatsby"
+import {useStaticQuery, graphql } from "gatsby"
 
 import Layout from "../components/Layout"
 import SEO from "../components/Seo"
-import {Wrapper,Image, BottomEdgeDown, Guitar} from '../pageStyles/pageStyles'
+import {Wrapper,Image, BottomEdgeDownLeft, BottomEdgeDownRight,Guitar} from '../pageStyles/pageStyles'
 import {COLORS} from '../constants'
 
 const IndexPage = () => {
@@ -30,7 +30,7 @@ const IndexPage = () => {
               sourceUrl
               imageFile {
                 childImageSharp {
-                  fluid(quality: 100) {
+                  fluid(quality: 75) {
                     ...GatsbyImageSharpFluid_withWebp
                   }
                 }
@@ -47,7 +47,7 @@ const IndexPage = () => {
                     sourceUrl
                     imageFile {
                       childImageSharp {
-                        fluid(quality: 50, grayscale: true) {
+                        fluid(quality: 50) {
                           ...GatsbyImageSharpFluid_withWebp
                         }
                       }
@@ -72,12 +72,14 @@ const IndexPage = () => {
           alt={homePageBannerPicture.altText}/>
           <div className="inner-div">
             <p className="header-title">{homePageTitle}</p>
-            <p className="heder-description">{homePageDescription}</p>
           </div>
-          <BottomEdgeDown color={COLORS.BLACK}/>
+          <BottomEdgeDownLeft color={COLORS.BLACK}/><BottomEdgeDownRight color={COLORS.BLACK}/>
       </div>
        <div className="guitars">
-          <h2>Featured Guitars</h2>
+         <div className="companyDescription">
+          <p className="header-description">{homePageDescription}</p>
+         </div>
+          <h2>Our top picks this month!!!</h2>
           <div className="guitar-items">
             {homePageFeaturedGuitars.map(({guitar, slug}) => (
               <Guitar key={slug} to={`/${slug}`}>

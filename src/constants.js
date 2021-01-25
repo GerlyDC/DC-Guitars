@@ -1,6 +1,6 @@
 export const COLORS = {
-  PRIMARY: "#794c74",
-  SECONDARY: "#c56183",
+  PRIMARY: "#878f99",
+  SECONDARY: "#B22222",
   TERTIARY: "#fadcaa",
   WHITE: "#FFF",
   BLACK: "#181819",
@@ -8,9 +8,9 @@ export const COLORS = {
 }
 
 export const FONT_FAMILIES = {
-  TITLE: "Oswald",
-  TEXT: "Roboto",
-  BUTTON: "Oswald",
+  TITLE: "Fugaz One",
+  TEXT: "Merriweather",
+  BUTTON: "Fugaz One",
 }
 
 export const MEDIA_QUERIES = {
